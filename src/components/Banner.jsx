@@ -32,7 +32,7 @@ const Banner = () => {
     };
 
     return (
-        <div className="relative container mt-10 mx-auto h-64 md:h-96 overflow-hidden">
+        <div className="relative  mt-10 mx-auto h-64 md:h-96 overflow-hidden">
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}

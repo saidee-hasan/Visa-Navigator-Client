@@ -68,12 +68,13 @@ function Header() {
           </ul>
         </div>
         <div className="navbar-end ">
+            <Link to={'/register'}>
           <button
             className="bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition duration-200"
             aria-label="Login"
           >
             Login
-          </button><div className="dropdown dropdown-end">
+          </button></Link><div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full overflow-hidden border-2 border-gray-300">
                             <Link to={'/'}>
