@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../provider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const { loginUser ,user } = useContext(AuthContext);
   // State to hold form values
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const navigate = useNavigate();
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -14,13 +17,30 @@ function Login() {
       setPassword(value);
     }
   };
-
+ 
+  if(user){
+    navigate('/')
+  }
+  
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // You can add further logic here, like sending the data to an API
+  const handleSubmit = async(e) => {
+    e.preventDefault(); 
+    try {
+    const res = await loginUser (email, password);
+   
+      
+        
+    if(res){
+      navigate('/')
+    }
+    
+
+      
+    } catch (error) {
+      
+    }
+   
+    
   };
 
   return (

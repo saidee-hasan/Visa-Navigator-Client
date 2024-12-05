@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../firebase.init";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
-  // State to hold form values
+  const { createUser  } = useContext(AuthContext);
+ const navigate = useNavigate();
+  // State to hold form values and loading/error states
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    photoUrl: "",
+    photoURL: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // Handle input changes
   const handleChange = (e) => {
@@ -19,16 +27,49 @@ function Register() {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
-    console.log("Form Data:", formData); // Log form data to console
-    // You can add further logic here, like sending the data to an API
+    setError(""); // Reset error state
+    setLoading(true); // Set loading state to true
+
+    const { name, email, password, photoURL } = formData;
+
+    try {
+      // Create user
+      const res = await createUser (email, password);
+       if (res) {
+        handleToast("User  Login Successfully");
+        navigate("/");
+      }
+
+      // Update user profile
+      await updateProfile(auth.currentUser , {
+        displayName: name,
+        photoURL: photoURL,
+      });
+
+      // Optionally reset the form
+      setFormData({
+        name: "",
+        email: "",
+        photoURL: "",
+        password: "",
+      });
+
+      // Redirect or show success message here
+    } catch (error) {
+      console.error("Registration error:", error);
+      setError("Registration failed. Please try again."); // Set error message
+    } finally {
+      setLoading(false); // Reset loading state
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-         <div className="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full transform transition-transform duration-700 hover:scale-105">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full transform transition-transform duration-700 hover:scale-105">
         <h2 className="text-2xl font-bold text-center mb-6">Register</h2>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>} {/* Display error message */}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
@@ -37,9 +78,9 @@ function Register() {
             <input
               type="text"
               id="name"
-              name="name" // Add name attribute
-              value={formData.name} // Bind value to state
-              onChange={handleChange} // Handle input change
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               placeholder="Your Name"
               required
@@ -52,9 +93,9 @@ function Register() {
             <input
               type="email"
               id="email"
-              name="email" // Add name attribute
-              value={formData.email} // Bind value to state
-              onChange={handleChange} // Handle input change
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               placeholder="you@example.com"
               required
@@ -67,9 +108,9 @@ function Register() {
             <input
               type="url"
               id="photo-url"
-              name="photoUrl" // Add name attribute
-              value={formData.photoUrl} // Bind value to state
-              onChange={handleChange} // Handle input change
+              name="photoURL"
+              value={formData.photoURL}
+              onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               placeholder="https://example.com/photo.jpg"
               required
