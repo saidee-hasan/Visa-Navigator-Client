@@ -5,13 +5,14 @@ import Register from "../components/Register";
 import Login from "../components/Login";
 import NotFound from "../components/NotFound";
 import AddVisa from "../components/AddVisa";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   { path: "/", element: <MainLayout />, children: [
     {path:'/',element:<Home/>},
     {path:'/register',element:<Register/>},
     {path:'/login',element:<Login/>},
-    {path:'/add-visa',element:<AddVisa/>},
+    {path:'/add-visa',element:  <PrivateRoute><AddVisa/></PrivateRoute>},
     {path:'/*',element:<NotFound/>},
 
 

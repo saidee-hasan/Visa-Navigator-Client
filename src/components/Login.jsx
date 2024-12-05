@@ -18,9 +18,7 @@ function Login() {
     }
   };
  
-  if(user){
-    navigate('/')
-  }
+
   
   // Handle form submission
   const handleSubmit = async(e) => {
