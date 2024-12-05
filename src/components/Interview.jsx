@@ -1,3 +1,4 @@
+// Interview.js
 import React from 'react';
 
 function Interview() {
@@ -8,57 +9,41 @@ function Interview() {
       {/* Preparation Tips Section */}
       <section className="section mb-8">
         <h2 className="text-2xl font-semibold mb-4">Preparation Tips</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            "Review your application and supporting documents thoroughly.",
-            "Practice answering common interview questions.",
-            "Dress appropriately and arrive on time.",
-            "Be honest and confident in your responses.",
-            "Prepare questions to ask the interviewer if given the opportunity."
-          ].map((tip, index) => (
-            <div key={index} className="bg-white shadow-md rounded-lg p-4 animate-fade-in">
-              <p className="text-gray-700">{tip}</p>
-            </div>
-          ))}
-        </div>
+        <ul className="list-disc list-inside text-gray-700 grid grid-cols-1 md:grid-cols-2">
+          <li className="mb-2 animate-fade-in">Review your application and supporting documents thoroughly.</li>
+          <li className="mb-2 animate-fade-in">Practice answering common interview questions.</li>
+          <li className="mb-2 animate-fade-in">Dress appropriately and arrive on time.</li>
+          <li className="mb-2 animate-fade-in">Be honest and confident in your responses.</li>
+          <li className="mb-2 animate-fade-in">Prepare questions to ask the interviewer if given the opportunity.</li>
+        </ul>
       </section>
 
       {/* Common Questions Section */}
       <section className="section mb-8">
         <h2 className="text-2xl font-semibold mb-4">Common Interview Questions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            "Why do you want to travel to [Country]?",
-            "How long do you plan to stay?",
-            "What will you do during your stay?",
-            "Do you have any family or friends in [Country]?",
-            "How will you support yourself during your stay?"
-          ].map((question, index) => (
-            <div key={index} className="bg-white shadow-md rounded-lg p-4 animate-fade-in">
-              <p className="text-gray-700">{question}</p>
-            </div>
-          ))}
-        </div>
+        <ul className="list-disc list-inside text-gray-700 grid grid-cols-1 md:grid-cols-2">
+          <li className="mb-2 animate-fade-in">Why do you want to travel to [Country]?</li>
+          <li className="mb-2 animate-fade-in">How long do you plan to stay?</li>
+          <li className="mb-2 animate-fade-in">What will you do during your stay?</li>
+          <li className="mb-2 animate-fade-in">Do you have any family or friends in [Country]?</li>
+          <li className="mb-2 animate-fade-in">How will you support yourself during your stay?</li>
+        </ul>
       </section>
 
       {/* What to Expect Section */}
       <section className="section mb-8">
         <h2 className="text-2xl font-semibold mb-4">What to Expect During the Interview</h2>
-        <div className="bg-white shadow-md rounded-lg p-4 animate-fade-in">
-          <p className="text-gray-700 mb-4">
-            During the visa interview, you will meet with a consular officer who will ask you questions about your application and travel plans. The interview typically lasts between 5 to 15 minutes. Be prepared to provide clear and concise answers.
-          </p>
-        </div>
+        <p className="text-gray-700 mb-4 animate-fade-in">
+          During the visa interview, you will meet with a consular officer who will ask you questions about your application and travel plans. The interview typically lasts between 5 to 15 minutes. Be prepared to provide clear and concise answers.
+        </p>
       </section>
 
       {/* Additional Resources Section */}
       <section className="section mb-8">
         <h2 className="text-2xl font-semibold mb-4">Additional Resources</h2>
-        <div className="bg-white shadow-md rounded-lg p-4 animate-fade-in">
-          <p className="text-gray-700 mb-4">
-            For more information, consider visiting the official embassy or consulate website for specific guidelines related to your visa type.
-          </p>
-        </div>
+        <p className="text-gray-700 mb-4 animate-fade-in">
+          For more information, consider visiting the official embassy or consulate website for specific guidelines related to your visa type.
+        </p>
       </section>
     </div>
   );
