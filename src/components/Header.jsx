@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 
+
 function Header() {
   return (
     <div>
@@ -45,6 +46,7 @@ function Header() {
             </ul>
           </div>
           <Link to="/" className="btn btn-ghost font-bold text-xl">
+     
           Visa <span className="text-red-400 "> Navigator</span>  
           </Link>
         </div>
