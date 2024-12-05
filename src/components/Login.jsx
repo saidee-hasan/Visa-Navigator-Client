@@ -78,4 +78,4 @@ function Login() {
   );
 }
 
-export default Logi;
+export default Login;

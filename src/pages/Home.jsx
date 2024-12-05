@@ -1,6 +1,8 @@
 import React from 'react'
 import Banner from '../components/Banner'
 import LatestVisas from '../components/LatestVisas'
+import Interview from '../components/Interview'
+import Faq from '../components/Faq'
 
 function Home() {
   return (
@@ -8,6 +10,8 @@ function Home() {
       <Banner/>
       <br />
       <LatestVisas/>
+      <Interview/>
+      <Faq/>
     </div>
   )
 }
