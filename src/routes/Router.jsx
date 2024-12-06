@@ -8,6 +8,7 @@ import AddVisa from "../components/AddVisa";
 import PrivateRoute from "./PrivateRoute";
 import AllVisa from "../components/AllVisa";
 import VisaDetails from "../components/VisaDetails";
+import MyVisaApply from "../components/MyVisaApply";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       },
 
       { path: "/login", element: <Login /> },
+      { path: "/my-visa-applications", element: <MyVisaApply />,
+        loader:()=> fetch('http://localhost:5000/apply')
+
+       },
       {
         path: "/add-visa",
         element: (
