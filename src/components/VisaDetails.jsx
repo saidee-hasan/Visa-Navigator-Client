@@ -33,7 +33,7 @@ function VisaDetails() {
                 ageRestriction: singleData.ageRestriction || '',
                 validity: singleData.validity || '',
                 applicationMethod: singleData.applicationMethod || '',
-                _id: singleData._id || '',
+            
             }));
         }
     }, [data, id]);
