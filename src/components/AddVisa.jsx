@@ -10,7 +10,7 @@ export default function AddVisa() {
   const [fee, setFee] = useState("");
   const [validity, setValidity] = useState("");
   const [applicationMethod, setApplicationMethod] = useState("");
-
+   const [countryImage,setCountryImage] = useState("")
   const documentOptions = [
     "Valid passport",
     "Visa application form",
@@ -25,6 +25,7 @@ export default function AddVisa() {
 
     const data = {
       countryName,
+      countryImage,
       visaType,
       processingTime,
       requiredDocuments,
@@ -86,6 +87,23 @@ export default function AddVisa() {
             type="text"
             value={countryName}
             onChange={(e) => setCountryName(e.target.value)}
+            required
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="countryName"
+          >
+            Country Image URl
+          </label>
+          <input
+            id="countryUrl"
+            type="url"
+              placeholder="https://example.com/image.jpg"
+            value={countryImage}
+            onChange={(e) => setCountryImage(e.target.value)}
             required
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
           />
