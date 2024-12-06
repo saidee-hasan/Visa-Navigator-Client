@@ -13,36 +13,30 @@ function VisaDetails() {
         email: user?.email || '',
         firstName: '',
         lastName: '',
-        appliedDate: new Date().toISOString().split('T')[0],
+        appliedDate: new Date().toISOString().split('T')[0], // Set today's date
         fee: '',
     });
 
     useEffect(() => {
-        const singleData = data.find((p) => p._id === id); // Use strict equality for comparison
-        setVisaData(singleData || {}); // Set product data or an empty object
-        setFormData((prev) => ({
-            ...prev,
-            fee: singleData?.fee || '',
-        }));
+        // Find the selected visa data by the id from URL params
+        const singleData = data.find((p) => p._id === id); 
+        if (singleData) {
+            setVisaData(singleData);
+            setFormData((prev) => ({
+                ...prev,
+                fee: singleData.fee || '',
+                countryName: singleData.countryName || '',
+                countryImage: singleData.countryImage || '',
+                visaType: singleData.visaType || '',
+                processingTime: singleData.processingTime || '',
+                description: singleData.description || '',
+                ageRestriction: singleData.ageRestriction || '',
+                validity: singleData.validity || '',
+                applicationMethod: singleData.applicationMethod || '',
+                _id: singleData._id || '',
+            }));
+        }
     }, [data, id]);
-
-    const {
-        countryName,
-        countryImage,
-        visaType,
-        processingTime,
-        description,
-        ageRestriction,
-        fee,
-        validity,
-        applicationMethod,
-        _id,
-    } = visaData;
-
-    // Check if visaData is empty and show a loading message or placeholder
-    if (!visaData._id) {
-        return <div className="text-center mt-10">Loading...</div>;
-    }
 
     const handleModalToggle = () => setIsModalOpen(!isModalOpen);
 
@@ -52,37 +46,48 @@ function VisaDetails() {
     };
 
     const handleFormSubmit = (e) => {
-        fetch( 'http://localhost:5000/apply',{
-            method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData),
-           })
         e.preventDefault();
-        console.log('Form Submitted:', formData);
-        // Submit the data to the backend here
-        handleModalToggle(); // Close the modal after submission
+        // Send form data to the backend (assuming a POST endpoint exists)
+        fetch('http://localhost:5000/apply', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Form Submitted:', data);
+                handleModalToggle(); // Close the modal after submission
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     };
+
+    // If visa data is still loading
+    if (!visaData._id) {
+        return <div className="text-center mt-10">Loading...</div>;
+    }
 
     return (
         <div className="mx-auto max-w-4xl p-4 mt-20">
             <div className="md:flex md:space-x-8 border shadow-orange-50">
                 <img
-                    src={countryImage}
-                    alt={countryName}
+                    src={visaData.countryImage}
+                    alt={visaData.countryName}
                     className="w-full md:w-1/2 h-auto rounded-lg shadow-md"
                 />
 
                 <div className="mt-4 py-5 md:mt-0 md:w-1/2 text-center md:text-left">
-                    <h2 className="text-2xl font-bold text-gray-800">{countryName}</h2>
-                    <p className="mt-2 text-gray-600">Visa Type: <span className="font-semibold">{visaType}</span></p>
-                    <p className="mt-2 text-gray-600">Processing Time: <span className="font-semibold">{processingTime}</span></p>
-                    <p className="mt-2 text-gray-600">Age Restriction: <span className="font-semibold">{ageRestriction}</span></p>
-                    <p className="mt-2 text-gray-600">Fee: <span className="font-semibold">{fee}</span></p>
-                    <p className="mt-2 text-gray-600">Validity: <span className="font-semibold">{validity}</span></p>
-                    <p className="mt-2 text-gray-600">Application Method: <span className="font-semibold">{applicationMethod}</span></p>
-                    <p className="mt-4 text-gray-700">{description}</p>
+                    <h2 className="text-2xl font-bold text-gray-800">{visaData.countryName}</h2>
+                    <p className="mt-2 text-gray-600">Visa Type: <span className="font-semibold">{visaData.visaType}</span></p>
+                    <p className="mt-2 text-gray-600">Processing Time: <span className="font-semibold">{visaData.processingTime}</span></p>
+                    <p className="mt-2 text-gray-600">Age Restriction: <span className="font-semibold">{visaData.ageRestriction}</span></p>
+                    <p className="mt-2 text-gray-600">Fee: <span className="font-semibold">{visaData.fee}</span></p>
+                    <p className="mt-2 text-gray-600">Validity: <span className="font-semibold">{visaData.validity}</span></p>
+                    <p className="mt-2 text-gray-600">Application Method: <span className="font-semibold">{visaData.applicationMethod}</span></p>
+                    <p className="mt-4 text-gray-700">{visaData.description}</p>
 
                     {/* Apply for Visa Button */}
                     <button

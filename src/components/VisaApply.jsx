@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
-function MyVisaApply() {
+function VisaApply() {
     const applications = useLoaderData(); // Assuming this returns an array of applications
 
     return (
@@ -27,4 +27,4 @@ function MyVisaApply() {
     );
 }
 
-export default MyVisaApply;
+export default VisaApply;

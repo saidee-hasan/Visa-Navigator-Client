@@ -8,7 +8,8 @@ import AddVisa from "../components/AddVisa";
 import PrivateRoute from "./PrivateRoute";
 import AllVisa from "../components/AllVisa";
 import VisaDetails from "../components/VisaDetails";
-import MyVisaApply from "../components/MyVisaApply";
+import MyVisaApply from "../components/VisaApply";
+import VisaApply from "../components/VisaApply";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
       },
 
       { path: "/login", element: <Login /> },
-      { path: "/my-visa-applications", element: <MyVisaApply />,
+      { path: "/my-visa-applications", element: <VisaApply/>,
         loader:()=> fetch('http://localhost:5000/apply')
 
        },
