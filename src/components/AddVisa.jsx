@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 export default function AddVisa() {
+  const {user}=useContext(AuthContext);
+
   const [countryName, setCountryName] = useState("");
   const [visaType, setVisaType] = useState("Tourist visa");
   const [processingTime, setProcessingTime] = useState("");
@@ -34,6 +37,7 @@ export default function AddVisa() {
       fee,
       validity,
       applicationMethod,
+      email: user.email
     };
    fetch( 'http://localhost:5000/visa',{
     method: 'POST',
