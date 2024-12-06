@@ -34,7 +34,13 @@ export default function AddVisa() {
       validity,
       applicationMethod,
     };
-
+   fetch( 'http://localhost:5000/visa',{
+    method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+   })
     console.log(data);
     resetForm();
   };
