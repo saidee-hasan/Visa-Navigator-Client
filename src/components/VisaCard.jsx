@@ -32,7 +32,7 @@ function VisaCard({ visa }) {
         <p className="text-sm text-gray-600">Validity: {validity}</p>
         <p className="text-sm text-gray-600">Application Method: {applicationMethod}</p>
         <p className="mt-2 text-gray-700">  {description}</p>
-        <Link to={`${_id}`}>
+        <Link to={`/visa/${_id}`}>
         <button
           onClick={handleSeeDetails}
           className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition"
