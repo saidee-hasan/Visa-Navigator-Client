@@ -23,7 +23,6 @@ function VisaDetails() {
         setFormData((prev) => ({
             ...prev,
             fee: singleData?.fee || '',
-           
         }));
     }, [data, id]);
 
@@ -53,6 +52,13 @@ function VisaDetails() {
     };
 
     const handleFormSubmit = (e) => {
+        fetch( 'http://localhost:5000/apply',{
+            method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(formData),
+           })
         e.preventDefault();
         console.log('Form Submitted:', formData);
         // Submit the data to the backend here
@@ -99,7 +105,7 @@ function VisaDetails() {
                                 <input
                                     type="email"
                                     name="email"
-                                    value={user?.email||''}
+                                    value={formData.email}
                                     readOnly
                                     className="w-full mt-2 p-2 border rounded"
                                 />
