@@ -53,10 +53,11 @@ function MyAddedVisa() {
   };
 
   const handleModalSubmit = (event) => {
+    console.log(event)
     event.preventDefault();
 
     const updatedVisa = {
-      ...currentVisa,
+    ...currentVisa,
       countryName: event.target.countryName.value,
       countryImage: event.target.countryImage.value,
       visaType: event.target.visaType.value,
@@ -65,30 +66,24 @@ function MyAddedVisa() {
       validity: event.target.validity.value,
       applicationMethod: event.target.applicationMethod.value,
     };
-
-    console.log(updatedVisa)
     fetch(`http://localhost:5000/visa/${currentVisa._id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
       },
-      body: JSON.stringify(updatedVisa),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
-          Swal.fire('Success', 'Visa information updated successfully!', 'success');
-          // Update the local state with the updated visa
-          setVisa((prevVisa) =>
-            prevVisa.map((v) =>
-              v._id === updatedVisa._id ? { ...v, ...updatedVisa } : v
-            )
-          );
-          setModalVisible(false); // Close the modal after submitting the form
-        } else {
-          Swal.fire('Error', 'There was an error updating the visa', 'error');
-        }
-      });
+      body: JSON.stringify(updatedVisa)
+  }).then(res => res.json())
+  .then(data=>{
+    if (data.modifiedCount > 0) {
+      Swal.fire('Success', 'Visa information updated successfully!', 'success');
+      // Update the local state with the updated visa
+    
+      setModalVisible(false); // Close the modal after submitting the form
+    } else {
+      Swal.fire('Error', 'There was an error updating the visa', 'error');
+    }
+  })
+    
   };
 
   return (
