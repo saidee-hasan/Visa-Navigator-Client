@@ -10,6 +10,7 @@ import AllVisa from "../components/AllVisa";
 import VisaDetails from "../components/VisaDetails";
 import MyVisaApply from "../components/VisaApply";
 import VisaApply from "../components/VisaApply";
+import MyAddedVisa from "../components/MyAddedVisa";
 
 export const router = createBrowserRouter([
   {
@@ -30,11 +31,18 @@ export const router = createBrowserRouter([
         loader: ({}) => fetch(`http://localhost:5000/visa/`),
       },
 
-      { path: "/login", element: <Login /> },
-      { path: "/my-visa-applications", element: <VisaApply/>,
-        loader:()=> fetch('http://localhost:5000/apply')
+      {
+        path: "/my-added-visas/:email",
+        element: <MyAddedVisa />,
+        loader: ({ params }) => fetch(`http://localhost:5000/visa/${params.email}`),
+      },
 
-       },
+      { path: "/login", element: <Login /> },
+      {
+        path: "/my-visa-applications",
+        element: <VisaApply />,
+        loader: () => fetch("http://localhost:5000/apply"),
+      },
       {
         path: "/add-visa",
         element: (
