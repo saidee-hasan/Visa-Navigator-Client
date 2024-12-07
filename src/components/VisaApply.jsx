@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function VisaApply() {
     const applications = useLoaderData();
@@ -10,22 +11,51 @@ function VisaApply() {
 
     const handleCancel = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/apply/${id}`, {
-                method: 'DELETE',
-            });
+           
 
-            const data = await response.json();
-
-            // Check if the deletion was successful
-            if (data.deletedCount > 0) {
-                console.log('Deleted count:', data.deletedCount);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+              }).then((result) => {
+        
+                if (result.isConfirmed) {
+                   fetch(`http://localhost:5000/apply/${id}`, {
+                        method: 'DELETE',
+                    })
+                    .then(res =>res.json())
+                    .then(data => {
+                        if(data.deletedCount > 0){
+                            
+                  Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                  });
+                  console.log('Deleted count:', data.deletedCount);
                 
-                // Corrected the filtering logic
-                const remaining = apply.filter(application => application._id !== id);
-                setApply(remaining); // Update the state to remove the cancelled application
-            } else {
-                console.log('No application found to delete');
-            }
+                  // Corrected the filtering logic
+                  const remaining = apply.filter(application => application._id !== id);
+                  setApply(remaining);
+
+                        }
+
+                    })
+        
+                
+
+
+
+                }
+              });
+
+
+        
+         
         } catch (error) {
             console.error('Error cancelling application:', error);
         }
