@@ -77,7 +77,11 @@ function MyAddedVisa() {
     if (data.modifiedCount > 0) {
       Swal.fire('Success', 'Visa information updated successfully!', 'success');
       // Update the local state with the updated visa
-    
+      setVisa((prevVisa) =>
+        prevVisa.map((item) =>
+          item._id === updatedVisa._id ? { ...item, ...updatedVisa } : item
+        )
+      );
       setModalVisible(false); // Close the modal after submitting the form
     } else {
       Swal.fire('Error', 'There was an error updating the visa', 'error');
