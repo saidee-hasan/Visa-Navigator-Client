@@ -49,7 +49,7 @@ export default function AddVisa() {
    }).then(res =>res.json())
    .then(data => {
     Swal.fire({
-      position: "top-cente",
+      position: "top-center",
       icon: "success",
       title: " Add visa  Your work has been saved",
       showConfirmButton: false,
