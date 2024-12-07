@@ -1,15 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function MyAddedVisa() {
   const { email } = useParams();
   const data = useLoaderData(); // This should be an array of visa data
 
-  // Filter visas by the logged-in user's email
-  const userVisas = useMemo(
-    () => (Array.isArray(data) ? data.filter((visa) => visa.email === email) : []),
-    [data, email]
-  );
+
+  const [visa, setVisa] = useState(data);
 
   const handleUpdate = (visaId) => {
     console.log('Update Visa:', visaId);
@@ -17,19 +15,61 @@ function MyAddedVisa() {
   };
 
   const handleDelete = (id) => {
-    console.log('Delete Visa:', id);
-    // Implement delete logic
+   try {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+         fetch(`http://localhost:5000/visa/${id}`, {
+              method: 'DELETE',
+          })
+          .then(res =>res.json())
+          .then(data => {
+              if(data.deletedCount > 0){
+                  
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        console.log('Deleted count:', data.deletedCount);
+      
+        // Corrected the filtering logic
+        const remaining = visa.filter(visa => visa._id !== id);
+        setVisa(remaining);
+
+              }
+
+          })
+
+      
+
+
+
+      }
+    });
+    
+   } catch (error) {
+    
+   }
   };
 
   return (
     <div className=" bg-gray-100 min-h-screen">
     <div className="mt-16 px-4 container mx-auto">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800">My Added Visas</h2>
-      {userVisas.length === 0 ? (
+      {data.length === 0 ? (
         <p className="text-gray-500">No visas found for your account.</p>
       ) : (
         <div className="grid grid-cols-1  lg:grid-cols-2 gap-6">
-          {userVisas.map((visa) => (
+          {data.map((visa) => (
             <div key={visa._id} className="bg-white py-4 px-6 space-y-4 sm:flex md:space-x-6 rounded-lg shadow-lg">
               {/* Image Section */}
               <img
