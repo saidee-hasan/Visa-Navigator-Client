@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 function VisaDetails() {
     const { id } = useParams();
     const data = useLoaderData();
+
+
+
+
     const { user } = useContext(AuthContext);
 
     const [visaData, setVisaData] = useState({});
@@ -57,6 +62,16 @@ function VisaDetails() {
         })
             .then((response) => response.json())
             .then((data) => {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Your work Apply  has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+
+
+
                 console.log('Form Submitted:', data);
                 handleModalToggle(); // Close the modal after submission
             })

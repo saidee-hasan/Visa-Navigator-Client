@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 function VisaApply() {
-    const applications = useLoaderData(); // Assuming this returns an array of applications
+    const applications = useLoaderData();
+
+    const [apply, setApply] = useState(applications);
+
+
 
     const handleCancel = async (id) => {
         try {
             const response = await fetch(`http://localhost:5000/apply/${id}`, {
                 method: 'DELETE',
             });
+
             const data = await response.json();
-            if (data.success) {
-                console.log('Application cancelled successfully:', id);
+
+            // Check if the deletion was successful
+            if (data.deletedCount > 0) {
+                console.log('Deleted count:', data.deletedCount);
+                
+                // Corrected the filtering logic
+                const remaining = apply.filter(application => application._id !== id);
+                setApply(remaining); // Update the state to remove the cancelled application
             } else {
-                console.error('Failed to cancel application:', id);
+                console.log('No application found to delete');
             }
         } catch (error) {
             console.error('Error cancelling application:', error);
@@ -25,13 +36,13 @@ function VisaApply() {
             <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
                 My Visa Applications
             </h2>
-            {applications.length === 0 ? (
+            {apply.length === 0 ? (
                 <p className="text-gray-600 text-center text-lg">
                     You have not applied for any visas yet.
                 </p>
             ) : (
                 <ul className="space-y-6">
-                    {applications.map((application) => (
+                    {apply.map((application) => (
                         <li
                             key={application._id}
                             className="border border-gray-200 rounded-lg shadow-lg bg-white p-6 flex flex-col md:flex-row items-start md:items-center gap-6 hover:shadow-2xl transition-shadow duration-300"

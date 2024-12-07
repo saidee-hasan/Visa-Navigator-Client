@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 export default function AddVisa() {
   const {user}=useContext(AuthContext);
@@ -45,6 +46,15 @@ export default function AddVisa() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+   }).then(res =>res.json())
+   .then(data => {
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: " Add visa  Your work has been saved",
+      showConfirmButton: false,
+      timer: 1500
+    });
    })
     console.log(data);
     resetForm();
