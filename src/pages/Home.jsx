@@ -33,7 +33,7 @@ function Home() {
   }, [isDarkMode]);
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-black dark:text-white">
+    <div className="bg-white mt-16 dark:bg-gray-900 text-black dark:text-white">
     <div className={`lg:w-11/12 mx-auto ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-black'}`}>
       <Banner />
       <br />

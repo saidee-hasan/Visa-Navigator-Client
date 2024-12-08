@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TypeAnimation } from 'react-type-animation';
 
 const slides = [
     {
@@ -47,7 +48,20 @@ const Banner = () => {
                     className={`absolute inset-0 rounded-md transition-opacity dark:bg-gray-900 text-black dark:text-white bg-slate-100 duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                 >
                     <div className="absolute md:p-12 p-2 inset-0  flex flex-col justify-center items-start p-8">
-                        <h2 className="text-2xl md:text-4xl   font-bold">{slide.title}</h2>
+                    <h3>
+                            <TypeAnimation
+                                sequence={[
+                                    slide.title, // Types the title
+                                    1000, // Waits 1s
+                                ]}
+                                wrapper="span"
+                                cursor={true}
+                                repeat={Infinity} // Repeat the animation
+                                style={{   display: 'inline-block' }}
+                                className='md:text-4xl text-md'
+                            />
+                        </h3>
+            
                         <p className="mt-4 ">{slide.description}</p>
                         <a href={slide.link} className="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                             {slide.cta}
