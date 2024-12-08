@@ -3,16 +3,20 @@ import { AuthContext } from "../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.init";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';  // Import ToastContainer and toast
+import 'react-toastify/dist/ReactToastify.css';  // Import toast styles
 
 function Register() {
-  const { createUser , user } = useContext(AuthContext);
- const navigate = useNavigate();
-  // State to hold form values and loading/error states
+  const { createUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+ 
   useEffect(() => {
     if (user) {
       navigate('/');
     }
   }, [user, navigate]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +26,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Handle input changes
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -31,29 +35,27 @@ function Register() {
     });
   };
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setError(""); // Reset error state
-    setLoading(true); // Set loading state to true
 
+  const handleSubmit = async (e) => {
+    e.preventDefault(); 
+    setError(""); 
+    setLoading(true); 
     const { name, email, password, photoURL } = formData;
 
     try {
-      // Create user
-      const res = await createUser (email, password);
-       if (res) {
-        handleToast("User  Login Successfully");
+
+      const res = await createUser(email, password);
+      if (res) {
+        toast.success("User Registration Successful!");  // Show success toast
         navigate("/");
       }
 
-      // Update user profile
-      await updateProfile(auth.currentUser , {
+      await updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: photoURL,
       });
 
-      // Optionally reset the form
+
       setFormData({
         name: "",
         email: "",
@@ -61,12 +63,12 @@ function Register() {
         password: "",
       });
 
-      // Redirect or show success message here
     } catch (error) {
       console.error("Registration error:", error);
-      setError("Registration failed. Please try again."); // Set error message
+      setError("Registration failed. Please try again."); 
+      toast.error("Registration failed. Please try again."); 
     } finally {
-      setLoading(false); // Reset loading state
+      setLoading(false); 
     }
   };
 
@@ -128,9 +130,9 @@ function Register() {
             <input
               type="password"
               id="password"
-              name="password" // Add name attribute
-              value={formData.password} // Bind value to state
-              onChange={handleChange} // Handle input change
+              name="password" 
+              value={formData.password} 
+              onChange={handleChange} 
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
               placeholder="********"
               required
@@ -144,18 +146,13 @@ function Register() {
           </button>
         </form>
 
-
         <p className="mt-4 text-center text-sm text-gray-600">
           Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a>
-          </p>
+        </p>
 
+      </div>
 
-          </div>
-
-
-
-
-
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar={true} />
     </div>
   );
 }
