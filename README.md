@@ -3,7 +3,7 @@
 Welcome to **Visa Navigator**, your ultimate guide to understanding and navigating the visa application process. Whether you're traveling for business, study, or leisure, Visa Navigator provides you with the information you need to make your journey smoother.
 
 ## Live Site URL
-[Visit Visa Navigator](https://www.visanavigator.com)  <!-- Replace with your actual live site URL -->
+[Visit Visa Navigator](https://visa-navigatore.netlify.app/)  <!-- Replace with your actual live site URL -->
 
 ## Features
 - **Comprehensive Visa Information**: Access detailed information about visa requirements for various countries.
