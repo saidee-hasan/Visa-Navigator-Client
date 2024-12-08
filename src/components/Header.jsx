@@ -104,7 +104,7 @@ function Header() {
           <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full overflow-hidden border-2 border-gray-300">
-                            <Link to={'/'}>
+                            <Link to={'/profile'}>
                                 <img
                                     alt="User  Avatar"
                                     src={ user?.photoURL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKKOdmJz8Z2pDtYgFgR2u9spABvNNPKYYtGw&s'} // Provide a default image path

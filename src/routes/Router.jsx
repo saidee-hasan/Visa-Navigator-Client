@@ -12,6 +12,8 @@ import MyVisaApply from "../components/VisaApply";
 import VisaApply from "../components/VisaApply";
 import MyAddedVisa from "../components/MyAddedVisa";
 import ForgotPassword from "../components/ForgotPassword";
+import UpdateProfile from "../components/UpdateProfile";
+import UserProfile from "../components/UserProfile";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +42,9 @@ export const router = createBrowserRouter([
       },
 
       { path: "/forgot-password", element: <ForgotPassword /> },
+      {path:"/profile",element:<PrivateRoute><UserProfile/></PrivateRoute>  },
+
+      { path: "/update", element: <PrivateRoute><UpdateProfile/></PrivateRoute>  },
       { path: "/login", element: <Login /> },
       {
         path: "/my-applications",
