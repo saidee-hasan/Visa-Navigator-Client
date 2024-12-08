@@ -1,32 +1,32 @@
 import React, { useState } from 'react';
 
-
 const slides = [
     {
-        id: 1,
-        image: 'https://i.ibb.co.com/zbSRt23/146-1464939-visa-on-arrival-paris-climate-agreement-map-hd-removebg-preview.png',
-        title: 'Unlock a World of Languages',
-        description: 'Join our community and start your language journey today!',
-        cta: 'Get Started',
-        link: '/register'
+      id: 1,
+      image: 'https://i.ibb.co/zbSRt23/146-1464939-visa-on-arrival-paris-climate-agreement-map-hd-removebg-preview.png',
+      title: 'Explore Visa Opportunities with Visa Navigator',
+      description: 'Find the best visa options for your travels and make your journey smoother!',
+      cta: 'Get Started',
+      link: '/register'
     },
     {
-        id: 2,
-        image: 'https://i.ibb.co.com/L5gMw80/istockphoto-1434060654-612x612-removebg-preview.png',
-        title: 'Unlock a World of Languages',
-        description: 'Join our community and start your language journey today!',
-        cta: 'Get Started',
-        link: '/register'
+      id: 2,
+      image: 'https://i.ibb.co/L5gMw80/istockphoto-1434060654-612x612-removebg-preview.png',
+      title: 'Seamless Visa Applications with Visa Navigator',
+      description: 'Easily navigate through the visa application process with expert guidance.',
+      cta: 'Get Started',
+      link: '/register'
     },
     {
-        id: 3,
-        image: 'https://i.ibb.co.com/K5x1LGG/banner.png',
-        title: 'Learn Anywhere, Anytime',
-        description: 'Practice your skills on the go with our mobile app.',
-        cta: 'Get Started',
-        link: '/register'
-    },
-];
+      id: 3,
+      image: 'https://i.ibb.co/K5x1LGG/banner.png',
+      title: 'Plan Your Travels with Visa Navigator',
+      description: 'Prepare for your next adventure with the right visa in hand.',
+      cta: 'Get Started',
+      link: '/register'
+    }
+  ];
+  
 
 const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0);

@@ -11,6 +11,7 @@ import VisaDetails from "../components/VisaDetails";
 import MyVisaApply from "../components/VisaApply";
 import VisaApply from "../components/VisaApply";
 import MyAddedVisa from "../components/MyAddedVisa";
+import ForgotPassword from "../components/ForgotPassword";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
           fetch(`https://server-swart-five.vercel.app/visa/${params.email}`),
       },
 
+      { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/login", element: <Login /> },
       {
         path: "/my-applications",

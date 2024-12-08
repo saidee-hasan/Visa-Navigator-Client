@@ -157,9 +157,11 @@ export default function AddVisa() {
               required
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             >
-              <option value="Tourist visa">Tourist Visa</option>
-              <option value="Student visa">Student Visa</option>
-              <option value="Official visa">Official Visa</option>
+               <option value="Tourist visa">Tourist visa</option>
+                  <option value="Student visa">Student visa</option>
+                  <option value="Official visa">Official visa</option>
+                  <option value="Work visa">Work visa</option>
+                  <option value="Business visa">Business visa</option>
             </select>
           </div>
 
