@@ -22,26 +22,27 @@ export const router = createBrowserRouter([
       {
         path: "/all-visas",
         element: <AllVisa />,
-        loader: () => fetch("http://localhost:5000/visa"),
+        loader: () => fetch("https://server-swart-five.vercel.app/visa"),
       },
 
       {
-        path: "/visa/:id",
+        path: "/details/:id",
         element: <VisaDetails />,
-        loader: ({}) => fetch(`http://localhost:5000/visa/`),
+        loader: ({}) => fetch(`https://server-swart-five.vercel.app/visa/`),
       },
 
       {
         path: "/my-added-visas/:email",
         element: <MyAddedVisa />,
-        loader: ({ params }) => fetch(`http://localhost:5000/visa/${params.email}`),
+        loader: ({ params }) =>
+          fetch(`https://server-swart-five.vercel.app/visa/${params.email}`),
       },
 
       { path: "/login", element: <Login /> },
       {
         path: "/my-visa-applications",
         element: <VisaApply />,
-        loader: () => fetch("http://localhost:5000/apply"),
+        loader: () => fetch("https://server-swart-five.vercel.app/apply"),
       },
       {
         path: "/add-visa",

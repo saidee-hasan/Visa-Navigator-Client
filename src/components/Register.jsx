@@ -1,13 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.init";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
-  const { createUser  } = useContext(AuthContext);
+  const { createUser , user } = useContext(AuthContext);
  const navigate = useNavigate();
   // State to hold form values and loading/error states
+  useEffect(() => {
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

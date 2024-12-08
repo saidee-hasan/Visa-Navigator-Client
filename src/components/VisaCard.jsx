@@ -35,7 +35,7 @@ function VisaCard({ visa }) {
           Application Method: {applicationMethod}
         </p>
         <p className="mt-3 text-gray-700 line-clamp-3">{description}</p>
-        <Link to={`/visa/${_id}`}>
+        <Link to={`/details/${_id}`}>
           <button
             className="mt-4 w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-2 px-4 rounded-xl shadow-lg hover:from-blue-600 hover:to-blue-700 hover:shadow-2xl transition-transform duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
