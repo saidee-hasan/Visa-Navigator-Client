@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';  // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css';  // Import toast styles
 
 function Login() {
-  const { loginUser ,user } = useContext(AuthContext);
-  // State to hold form values
+  const { loginUser, user } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
 
   useEffect(() => {
     if (user) {
@@ -16,7 +16,6 @@ function Login() {
     }
   }, [user, navigate]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'email') {
@@ -25,28 +24,19 @@ function Login() {
       setPassword(value);
     }
   };
- 
 
-  
-  // Handle form submission
-  const handleSubmit = async(e) => {
-    e.preventDefault(); 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-    const res = await loginUser (email, password);
-   
+      const res = await loginUser(email, password);
       
-        
-    if(res){
-      navigate('/')
-    }
-    
-
-      
+      if (res) {
+        toast.success("Login Successful!");  // Success toast
+        navigate('/');
+      }
     } catch (error) {
-      
+      toast.error("Login failed. Please check your credentials.");  // Error toast
     }
-   
-    
   };
 
   return (
@@ -100,6 +90,9 @@ function Login() {
           Don't have an account? <a href="/register" className="text-blue-500 hover:underline">Register</a>
         </p>
       </div>
+
+      {/* ToastContainer to display the toasts */}
+      <ToastContainer position="top-center" autoClose={5000} hideProgressBar={true} />
     </div>
   );
 }
