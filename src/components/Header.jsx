@@ -52,7 +52,7 @@ function Header() {
                 <Link to={`/my-visas/${user?.email}`}>My Added Visas</Link>
               </li>
               <li>
-                <Link to="/my-applications">My Visa Applications</Link>
+                <Link to="/my-applications">My Applications</Link>
               </li>
             </ul>
           </div>
@@ -76,7 +76,7 @@ function Header() {
             <Link to={`/my-visas/${user?.email}`}>My Added Visas</Link>
             </li>
             <li>
-              <Link to="/my-applications">My Visa Applications</Link>
+              <Link to="/my-applications">My  Applications</Link>
             </li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
-import { RingLoader } from "react-spinners";
+import { CircleLoader, RingLoader } from "react-spinners";
 import Swal from "sweetalert2";
 
 function MyAddedVisa() {
@@ -107,7 +107,7 @@ function MyAddedVisa() {
   if (loading) {
     return (
         <div className="flex justify-center items-center h-screen">
-  <RingLoader color="#36d7b7" loading={loading} size={60} />
+ <CircleLoader color="#36d7b7" loading={loading} size={60} />
         </div>
     );
 }
@@ -115,9 +115,7 @@ function MyAddedVisa() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="mt-16 px-4 container mx-auto">
-        <h2 className="text-2xl font-semibold mb-6 text-gray-800">
-          My Added Visas
-        </h2>
+     
         {visa.length === 0 ? (
           <p className="text-gray-500">No visas found for your account.</p>
         ) : (

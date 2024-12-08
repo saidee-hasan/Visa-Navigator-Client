@@ -27,13 +27,13 @@ export const router = createBrowserRouter([
 
       {
         path: "/details/:id",
-        element: <VisaDetails />,
+        element:<PrivateRoute><VisaDetails /></PrivateRoute> ,
         loader: ({}) => fetch(`https://server-swart-five.vercel.app/visa/`),
       },
 
       {
         path: "/my-visas/:email",
-        element: <MyAddedVisa />,
+        element:<PrivateRoute><MyAddedVisa /></PrivateRoute> ,
         loader: ({ params }) =>
           fetch(`https://server-swart-five.vercel.app/visa/${params.email}`),
       },
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       {
         path: "/my-applications",
-        element: <VisaApply />,
+        element:<PrivateRoute><VisaApply /></PrivateRoute> ,
         loader: () => fetch("https://server-swart-five.vercel.app/apply"),
       },
       {
