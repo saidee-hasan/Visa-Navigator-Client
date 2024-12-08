@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { CircleLoader, RingLoader } from "react-spinners";
 
 export default function AddVisa() {
   const { user } = useContext(AuthContext);
@@ -79,6 +80,24 @@ export default function AddVisa() {
     setValidity("");
     setApplicationMethod("");
   };
+  const [loading, setLoading] = useState(true); 
+
+  useEffect(() => {
+      
+      const timer = setTimeout(() => {
+          setLoading(false);
+      }, 1000); 
+
+      return () => clearTimeout(timer); // Cleanup the timer
+  }, []);
+
+  if (loading) {
+    return (
+        <div className="flex justify-center items-center h-screen">
+  <CircleLoader  color="#36d7b7" loading={loading} size={100} />
+        </div>
+    );
+}
 
   return (
     <div className="bg-gradient-to-r from-blue-100 via-white to-blue-50 shadow-lg rounded-lg">

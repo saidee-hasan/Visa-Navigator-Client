@@ -49,10 +49,10 @@ function Header() {
                 <Link to="/add-visa">Add Visa</Link>
               </li>
               <li>
-                <Link to={`/my-added-visas/${user?.email}`}>My Added Visas</Link>
+                <Link to={`/my-visas/${user?.email}`}>My Added Visas</Link>
               </li>
               <li>
-                <Link to="/my-visa-applications">My Visa Applications</Link>
+                <Link to="/my-applications">My Visa Applications</Link>
               </li>
             </ul>
           </div>
@@ -73,10 +73,10 @@ function Header() {
               <Link to="/add-visa">Add Visa</Link>
             </li>
             <li>
-            <Link to={`/my-added-visas/${user?.email}`}>My Added Visas</Link>
+            <Link to={`/my-visas/${user?.email}`}>My Added Visas</Link>
             </li>
             <li>
-              <Link to="/my-visa-applications">My Visa Applications</Link>
+              <Link to="/my-applications">My Visa Applications</Link>
             </li>
           </ul>
         </div>

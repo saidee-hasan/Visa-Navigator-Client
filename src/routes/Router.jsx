@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: "/my-added-visas/:email",
+        path: "/my-visas/:email",
         element: <MyAddedVisa />,
         loader: ({ params }) =>
           fetch(`https://server-swart-five.vercel.app/visa/${params.email}`),
@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
 
       { path: "/login", element: <Login /> },
       {
-        path: "/my-visa-applications",
+        path: "/my-applications",
         element: <VisaApply />,
         loader: () => fetch("https://server-swart-five.vercel.app/apply"),
       },

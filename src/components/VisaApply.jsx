@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { RingLoader } from "react-spinners";
+import { CircleLoader, RingLoader } from "react-spinners";
 import Swal from "sweetalert2";
 
 function VisaApply() {
@@ -59,7 +59,7 @@ function VisaApply() {
   if (loading) {
     return (
         <div className="flex justify-center items-center h-screen">
-  <RingLoader color="#36d7b7" loading={loading} size={60} />
+<CircleLoader  color="#36d7b7" loading={loading} size={100} />
         </div>
     );
 }

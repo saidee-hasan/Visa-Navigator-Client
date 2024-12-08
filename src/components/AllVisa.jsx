@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import VisaCard from './VisaCard';
-import { RingLoader } from 'react-spinners';
+import { CircleLoader, RingLoader } from 'react-spinners';
 
 function AllVisa() {
     const visaData = useLoaderData();
@@ -26,7 +26,7 @@ function AllVisa() {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
-      <RingLoader color="#36d7b7" loading={loading} size={60} />
+<CircleLoader  color="#36d7b7" loading={loading} size={100} />
             </div>
         );
     }
