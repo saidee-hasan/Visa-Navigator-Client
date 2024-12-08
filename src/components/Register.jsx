@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { updateProfile } from "firebase/auth";
+import { signInWithPopup, updateProfile } from "firebase/auth";
 import { auth } from "../../firebase.init";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify"; // Import ToastContainer and toast
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import { GoogleAuthProvider } from "firebase/auth";
 
 function Register() {
   const { createUser, user } = useContext(AuthContext);
@@ -24,6 +25,17 @@ function Register() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const provider = new GoogleAuthProvider();
+  const handleLogin = () => {
+    signInWithPopup(auth, provider)
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -173,9 +185,32 @@ function Register() {
             Login
           </a>
         </p>
+<br />
+
+        <button
+        onClick={handleLogin}
+        className="flex items-center justify-center px-4 py-2 mx-auto bg-white shadow-2xl rounded-md transition duration-200 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+        aria-label="Login with Google"
+      
+      >
+      
+          <>
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/800px-Google_2015_logo.svg.png"
+              alt="Google Logo"
+              className="h-8 mr-2"
+            />
+            <span className="text-gray-800 font-bold  text-xl">
+              Login with Google
+            </span>
+          </>
+   
+      </button>
       </div>
 
       <ToastContainer position="top-center" autoClose={5000} hideProgressBar={true} />
+
+     
     </div>
   );
 }

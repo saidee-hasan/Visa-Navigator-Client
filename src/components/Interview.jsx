@@ -3,7 +3,7 @@ import React from 'react';
 
 function Interview() {
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="bg-white dark:bg-gray-900 text-black dark:text-white">
       <h1 className="text-3xl font-bold text-center mb-6 animate-fade-in">Visa Interview Preparation</h1>
       
       {/* Preparation Tips Section */}

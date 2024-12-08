@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className="bg-gray-200 py-4">
+    <footer className="bg-gray-200 dark:bg-gray-900 text-black dark:text-white  py-4">
       <div className="max-w-6xl mx-auto text-center">
         <p className="text-gray-700">
           &copy; {new Date().getFullYear()} Your Company Name. All rights reserved.

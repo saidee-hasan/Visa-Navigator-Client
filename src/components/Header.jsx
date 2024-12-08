@@ -15,8 +15,8 @@ function Header() {
 };
   console.log(user)
   return (
-    <div>
-      <div className="navbar bg-base-100 fixed z-50 ">
+    <div className="bg-base-100  dark:bg-gray-900 text-black dark:text-white fixed z-50 w-full">
+      <div className="navbar  md:px-8 ">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -56,7 +56,7 @@ function Header() {
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost font-bold text-xl">
+          <Link to="/" className=" font-bold text-sm md:text-xl">
      
           Visa <span className="text-red-400 "> Navigator</span>  
           </Link>

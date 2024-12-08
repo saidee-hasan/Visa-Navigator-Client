@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const slides = [
     {
         id: 1,
-        image: 'https://i.ibb.co.com/37KNKyv/book-181404689-1000-removebg-preview.png',
+        image: 'https://i.ibb.co.com/zbSRt23/146-1464939-visa-on-arrival-paris-climate-agreement-map-hd-removebg-preview.png',
         title: 'Unlock a World of Languages',
         description: 'Join our community and start your language journey today!',
         cta: 'Get Started',
@@ -12,7 +12,15 @@ const slides = [
     },
     {
         id: 2,
-        image: 'https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?semt=ais_hybrid',
+        image: 'https://i.ibb.co.com/L5gMw80/istockphoto-1434060654-612x612-removebg-preview.png',
+        title: 'Unlock a World of Languages',
+        description: 'Join our community and start your language journey today!',
+        cta: 'Get Started',
+        link: '/register'
+    },
+    {
+        id: 3,
+        image: 'https://i.ibb.co.com/K5x1LGG/banner.png',
         title: 'Learn Anywhere, Anytime',
         description: 'Practice your skills on the go with our mobile app.',
         cta: 'Get Started',
@@ -36,11 +44,11 @@ const Banner = () => {
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
-                    className={`absolute inset-0 rounded-md transition-opacity bg-slate-100 duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 rounded-md transition-opacity dark:bg-gray-900 text-black dark:text-white bg-slate-100 duration-700 ease-in-out ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
                 >
                     <div className="absolute md:p-12 p-2 inset-0  flex flex-col justify-center items-start p-8">
-                        <h2 className="text-2xl md:text-4xl text-black  font-bold">{slide.title}</h2>
-                        <p className="mt-4 text-black">{slide.description}</p>
+                        <h2 className="text-2xl md:text-4xl   font-bold">{slide.title}</h2>
+                        <p className="mt-4 ">{slide.description}</p>
                         <a href={slide.link} className="mt-6 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
                             {slide.cta}
                         </a>
