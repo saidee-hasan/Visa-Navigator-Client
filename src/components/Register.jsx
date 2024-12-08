@@ -62,6 +62,7 @@ function Register() {
         photoURL: "",
         password: "",
       });
+ 
 
     } catch (error) {
       console.error("Registration error:", error);
@@ -76,7 +77,7 @@ function Register() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full transform transition-transform duration-700 hover:scale-105">
         <h2 className="text-2xl font-bold text-center mb-6">Register</h2>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>} {/* Display error message */}
+      
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700" htmlFor="name">
