@@ -25,4 +25,4 @@ Visa Navigator is a comprehensive application designed to assist users in naviga
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/visa-navigator.git
+   git clone https://github.com/saidee_hasan/visa-navigator.git
