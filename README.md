@@ -12,7 +12,7 @@ Visa Navigator is a comprehensive application designed to assist users in naviga
 ## Technologies Used
 - **Frontend**: HTML, CSS, JavaScript (or any framework like React, Angular, etc.)
 - **Backend**: Node.js, Express (or any other backend technology)
-- **Database**: MongoDB, MySQL (or any other database)
+- **Database**: MongoDB, 
 - **APIs**: Integration with third-party APIs for real-time data.
 
 ## Installation
